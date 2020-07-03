@@ -13,6 +13,7 @@
 		FCDE38D224AF9FC90049BBC6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCDE38D024AF9FC90049BBC6 /* Main.storyboard */; };
 		FCDE38DE24AF9FCA0049BBC6 /* MetalAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE38DD24AF9FCA0049BBC6 /* MetalAppTests.swift */; };
 		FCDE38E924AF9FCA0049BBC6 /* MetalAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE38E824AF9FCA0049BBC6 /* MetalAppUITests.swift */; };
+		FCDE38FA24AFA7450049BBC6 /* shaderDemo.metal in Sources */ = {isa = PBXBuildFile; fileRef = FCDE38F924AFA7450049BBC6 /* shaderDemo.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,8 @@
 		FCDE38E424AF9FCA0049BBC6 /* MetalAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MetalAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCDE38E824AF9FCA0049BBC6 /* MetalAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalAppUITests.swift; sourceTree = "<group>"; };
 		FCDE38EA24AF9FCA0049BBC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FCDE38F624AF9FF20049BBC6 /* Metal.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Metal.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		FCDE38F924AFA7450049BBC6 /* shaderDemo.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = shaderDemo.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,7 @@
 		FCDE38BE24AF9FC90049BBC6 = {
 			isa = PBXGroup;
 			children = (
+				FCDE38F624AF9FF20049BBC6 /* Metal.playground */,
 				FCDE38C924AF9FC90049BBC6 /* MetalApp */,
 				FCDE38DC24AF9FCA0049BBC6 /* MetalAppTests */,
 				FCDE38E724AF9FCA0049BBC6 /* MetalAppUITests */,
@@ -98,6 +102,7 @@
 			children = (
 				FCDE38CA24AF9FC90049BBC6 /* AppDelegate.swift */,
 				FCDE38CC24AF9FC90049BBC6 /* ViewController.swift */,
+				FCDE38F924AFA7450049BBC6 /* shaderDemo.metal */,
 				FCDE38CE24AF9FC90049BBC6 /* Assets.xcassets */,
 				FCDE38D024AF9FC90049BBC6 /* Main.storyboard */,
 				FCDE38D324AF9FC90049BBC6 /* Info.plist */,
@@ -253,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCDE38FA24AFA7450049BBC6 /* shaderDemo.metal in Sources */,
 				FCDE38CD24AF9FC90049BBC6 /* ViewController.swift in Sources */,
 				FCDE38CB24AF9FC90049BBC6 /* AppDelegate.swift in Sources */,
 			);
