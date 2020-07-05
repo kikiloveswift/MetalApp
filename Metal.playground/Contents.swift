@@ -8,7 +8,7 @@ guard let device = MTLCreateSystemDefaultDevice() else {
 
 let frame = CGRect(x: 0, y: 0, width: 600, height: 600)
 let view = MTKView(frame: frame, device: device)
-view.clearColor = MTLClearColor(red: 1, green: 1, blue: 0.8, alpha: 1)
+view.clearColor = MTLClearColor(red: 1, green: 1, blue: 0.7, alpha: 1)
 
 /**
  Model I/O
@@ -18,9 +18,10 @@ view.clearColor = MTLClearColor(red: 1, green: 1, blue: 0.8, alpha: 1)
 /// Model I/O 创建一个球形，并给定了尺寸，并且返回一个 MDLMesh，包含了所有顶点数据
 /// Metal 只能使用 Mesh, 所以需要转换一下
 let allocator = MTKMeshBufferAllocator(device: device)
-let mdlMesh = MDLMesh(sphereWithExtent: [0.75, 0.75, 0.75],
-                      segments: [100, 100],
+let mdlMesh = MDLMesh(coneWithExtent: [1, 1, 1],
+                      segments: [10, 10],
                       inwardNormals: false,
+                      cap: true,
                       geometryType: .triangles,
                       allocator: allocator)
 let mesh = try MTKMesh(mesh: mdlMesh, device: device)
@@ -55,7 +56,7 @@ vertex float4 vertex_main(const VertextIn vertex_in [[stage_in]]) {
 }
 
 fragment float4 fragment_main() {
-    return  float4(1, 0, 0, 1);
+    return  float4(0, 1, 0, 1);
 }
 
 """
@@ -95,6 +96,7 @@ renderEncoder.setVertexBuffer(mesh.vertexBuffers[0].buffer, offset: 0, index: 0)
 guard let submesh = mesh.submeshes.first else {
     fatalError()
 }
+renderEncoder.setTriangleFillMode(.lines)
 
 renderEncoder.drawIndexedPrimitives(type: .triangle,
                                     indexCount: submesh.indexCount,
