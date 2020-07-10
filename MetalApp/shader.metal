@@ -14,7 +14,6 @@ struct VertextIn {
 
 struct VertextOut {
     float4 position [[ position ]];
-    float point_size [[ point_size ]];
 };
 
 vertex float4 vertex_main(const VertextIn vertex_in [[stage_in]], constant float &timer[[buffer(1)]]) {

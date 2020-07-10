@@ -45,7 +45,7 @@ final class Render: NSObject {
         }
         commandQueue = cqueue
         
-        let mdlMesh = Primitive.makeCube(device: device, size: 1)
+        let mdlMesh = Primitive.makeCube(device: device, size: 0.6)
         
         do {
             mesh = try MTKMesh(mesh: mdlMesh, device: device)
@@ -68,12 +68,16 @@ final class Render: NSObject {
         pipelineDescriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(mesh.vertexDescriptor)
         pipelineDescriptor.colorAttachments[0].pixelFormat = metalView.colorPixelFormat
         
-        do {
-            pipelineState = try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
-        } catch {
-            fatalError(error.localizedDescription)
-        }
+//        do {
+//            pipelineState = try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
+//        } catch {
+//            fatalError(error.localizedDescription)
+//        }
         
+        guard let pipe = try? device.makeRenderPipelineState(descriptor: pipelineDescriptor) else {
+            return
+        }
+        pipelineState = pipe
         
         
         
@@ -97,6 +101,7 @@ extension Render: MTKViewDelegate {
             return
         }
         
+        
         /// draw code
         /// This set up a render command encoder and presents the view's drawable texture to the GPU
         renderEncoder.setRenderPipelineState(pipelineState)
@@ -106,7 +111,7 @@ extension Render: MTKViewDelegate {
         renderEncoder.setVertexBytes(&currentTime, length: MemoryLayout<Float>.stride, index: 1)
         
         for submesh in mesh.submeshes {
-            renderEncoder.drawIndexedPrimitives(type: .triangle,
+            renderEncoder.drawIndexedPrimitives(type: .point,
                                                 indexCount: submesh.indexCount,
                                                 indexType: submesh.indexType,
                                                 indexBuffer: submesh.indexBuffer.buffer,
@@ -121,6 +126,5 @@ extension Render: MTKViewDelegate {
         commandBuffer.present(drawable)
         commandBuffer.commit()
         
-        /// 对于 CPU 而言，你需要把数据和 pipelineState 传给 GPU，因此，你需要发出这个 draw call
     }
 }
